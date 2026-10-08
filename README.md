@@ -16,7 +16,21 @@ A desktop patient record tracking application built with **C# Windows Forms** on
 - **Print** the patient list
 - **PDF export** of the patient list via the Windows "Microsoft Print to PDF" printer
 
-All SQL queries that take user input use parameters (`MySqlParameter` / `AddWithValue`).
+## Security
+
+What the application does:
+
+- **Password hashing:** passwords are stored as salted **PBKDF2-SHA256** hashes (random 16-byte salt per password, 100,000 iterations, constant-time comparison). Plain-text passwords are not stored.
+- **Parameterized queries:** all SQL queries that take user input use parameters (`MySqlParameter` / `AddWithValue`); user input is never concatenated into SQL.
+- **Login attempt limit:** after 5 consecutive failed logins, the login is locked for 30 seconds. The counter is kept in memory for the running application and resets when the application is restarted.
+
+What it does **not** do:
+
+- **No user roles or authorization:** every logged-in user can view, change and delete all patient records.
+- **No encryption of patient data:** patient records are stored as plain text in MySQL.
+- **No foreign keys** in the database schema.
+
+> **This is a learning/portfolio project and is not suitable for real patient data.**
 
 ## Tech Stack
 
