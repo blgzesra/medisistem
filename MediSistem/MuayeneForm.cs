@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -52,8 +53,9 @@ namespace MediSistem
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 MessageBox.Show(
-                    "Bugünkü muayeneler yüklenirken hata oluştu:\n" + ex.Message,
+                    "Bugünkü muayeneler yüklenirken hata oluştu.",
                     "Hata",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error

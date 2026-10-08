@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Windows.Forms;
@@ -90,8 +91,9 @@ namespace MediSistem
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 MessageBox.Show(
-                    "Hasta listesi yüklenirken bir hata oluştu:\n" + ex.Message,
+                    "Hasta listesi yüklenirken bir hata oluştu.",
                     "Hata",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -146,8 +148,9 @@ namespace MediSistem
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 MessageBox.Show(
-                    "Arama sırasında bir hata oluştu:\n" + ex.Message,
+                    "Arama sırasında bir hata oluştu.",
                     "Hata",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -344,7 +347,8 @@ namespace MediSistem
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hasta silinirken bir hata oluştu:\n" + ex.Message,
+                Debug.WriteLine(ex);
+                MessageBox.Show("Hasta silinirken bir hata oluştu.",
                     "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -401,8 +405,9 @@ namespace MediSistem
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 MessageBox.Show(
-                    "'Microsoft Print to PDF' yazıcısı bulunamadı veya bir hata oluştu:\n" + ex.Message,
+                    "'Microsoft Print to PDF' yazıcısı bulunamadı veya bir hata oluştu.",
                     "Hata",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -438,8 +443,9 @@ namespace MediSistem
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 MessageBox.Show(
-                    "'Microsoft Print to PDF' yazıcısı bulunamadı veya hata oluştu:\n" + ex.Message,
+                    "'Microsoft Print to PDF' yazıcısı bulunamadı veya hata oluştu.",
                     "Hata",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error

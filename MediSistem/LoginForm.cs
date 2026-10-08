@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Drawing;
@@ -7,6 +8,13 @@ namespace MediSistem
 {
     public partial class LoginForm : Form
     {
+        // Art arda hatalı giriş sınırı. Static: çıkış yapıp yeni LoginForm
+        // açılsa da sayaç uygulama çalıştığı sürece korunur.
+        private const int MaxFailedAttempts = 5;
+        private static readonly TimeSpan LockoutDuration = TimeSpan.FromSeconds(30);
+        private static int failedAttempts = 0;
+        private static DateTime lockoutUntil = DateTime.MinValue;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -30,6 +38,15 @@ namespace MediSistem
         
             private void button1_Click(object sender, EventArgs e)
         {
+            if (DateTime.Now < lockoutUntil)
+            {
+                int kalan = (int)Math.Ceiling((lockoutUntil - DateTime.Now).TotalSeconds);
+                MessageBox.Show("Çok fazla hatalı deneme yapıldı.\n" + kalan +
+                    " saniye sonra tekrar deneyin.", "Giriş Kilitli",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string email = textBox1.Text.Trim();
             // Şifre olduğu gibi kullanılır (boşluklar şifrenin parçası olabilir)
             string password = textBox2.Text;
@@ -64,25 +81,41 @@ namespace MediSistem
 
                     if (storedHash != null && PasswordHasher.Verify(password, storedHash))
                     {
+                        failedAttempts = 0;
+
                         MessageBox.Show("Giriş başarılı: " + adSoyad, "Bilgi",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        
+
                         MainForm anaForm = new MainForm();
                         anaForm.Show();
                         this.Hide();
                     }
                     else
                     {
-                        MessageBox.Show("Hatalı e-posta veya şifre!", "Hata",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        failedAttempts++;
+
+                        if (failedAttempts >= MaxFailedAttempts)
+                        {
+                            failedAttempts = 0;
+                            lockoutUntil = DateTime.Now.Add(LockoutDuration);
+                            MessageBox.Show("Art arda " + MaxFailedAttempts + " hatalı deneme yapıldı.\n" +
+                                "Giriş " + (int)LockoutDuration.TotalSeconds + " saniye kilitlendi.",
+                                "Giriş Kilitli", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Hatalı e-posta veya şifre!", "Hata",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Bağlantı hatası:\n" + ex.Message, "Bağlantı Hatası",
-                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Debug.WriteLine(ex);
+                MessageBox.Show("Veritabanına bağlanılamadı. Lütfen bağlantı ayarlarını kontrol edip tekrar deneyin.",
+                    "Bağlantı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
 

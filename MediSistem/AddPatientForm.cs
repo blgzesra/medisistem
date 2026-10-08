@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Drawing;
@@ -80,7 +81,8 @@ namespace MediSistem
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Veri kaydedilirken hata oluştu:\n" + ex.Message,
+                Debug.WriteLine(ex);
+                MessageBox.Show("Veri kaydedilirken hata oluştu.",
                     "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

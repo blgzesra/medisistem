@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -51,7 +52,8 @@ namespace MediSistem
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Hasta bilgileri yüklenirken hata oluştu:\n" + ex.Message,
+                Debug.WriteLine(ex);
+                MessageBox.Show("Hasta bilgileri yüklenirken hata oluştu.",
                     "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -105,7 +107,8 @@ namespace MediSistem
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Güncelleme sırasında hata oluştu:\n" + ex.Message,
+                Debug.WriteLine(ex);
+                MessageBox.Show("Güncelleme sırasında hata oluştu.",
                     "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
