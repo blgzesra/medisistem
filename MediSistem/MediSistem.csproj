@@ -182,9 +182,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="hastane resmi.jpg.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\sekreter.jpg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

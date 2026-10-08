@@ -53,7 +53,7 @@
             // 
             // picHero
             // 
-            this.picHero.Image = global::MediSistem.Properties.Resources.giriş_resmi_jpg;
+            this.picHero.Image = global::MediSistem.Properties.Resources.iç_hastane_resmi_jpg;
             this.picHero.Location = new System.Drawing.Point(389, 41);
             this.picHero.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picHero.Name = "picHero";

@@ -63,16 +63,6 @@ namespace MediSistem.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
-        internal static System.Drawing.Bitmap giriş_resmi_jpg {
-            get {
-                object obj = ResourceManager.GetObject("giriş resmi.jpg", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
-        /// </summary>
         internal static System.Drawing.Bitmap iç_hastane_resmi_jpg {
             get {
                 object obj = ResourceManager.GetObject("iç hastane resmi.jpg", resourceCulture);
