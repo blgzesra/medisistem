@@ -141,10 +141,6 @@ Both libraries are restored from NuGet and are not part of this repository:
 - [MySql.Data](https://www.nuget.org/packages/MySql.Data) (MySQL Connector/NET), licensed under GPLv2 with the Universal FOSS Exception
 - [Guna.UI2.WinForms](https://www.nuget.org/packages/Guna.UI2.WinForms), a third-party UI component library with its own license terms; check them before commercial use
 
-## Screenshots
-
-Screenshots will be added to `docs/screenshots/`.
-
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE).
