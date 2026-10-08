@@ -22,8 +22,6 @@ namespace MediSistem
             printDocument.PrintPage += printDocument_PrintPage;
 
             LoadPatients();
-
-            LoadPatients();
             StyleGrid();
 
         }
@@ -361,58 +359,6 @@ namespace MediSistem
             SearchPatients(txtAra.Text);
         }
 
-
-        /// Yazdır butonu.
-        
-        private void btnYazdir_Click(object sender, EventArgs e)
-        {
-            if (guna2DataGridView1.Rows.Count == 0)
-            {
-                MessageBox.Show("Yazdırılacak kayıt yok.", "Uyarı",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            using (PrintDialog dlg = new PrintDialog())
-            {
-                dlg.Document = printDocument;
-
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    printRowIndex = 0;
-                    printDocument.Print();
-                }
-            }
-        }
-
-        
-        /// PDF indir butonu - Microsoft Print to PDF ile.
-       
-        private void btnPdfIndir_Click(object sender, EventArgs e)
-        {
-            if (guna2DataGridView1.Rows.Count == 0)
-            {
-                MessageBox.Show("PDF'e aktarılacak kayıt yok.", "Uyarı",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                printDocument.PrinterSettings.PrinterName = "Microsoft Print to PDF";
-                printRowIndex = 0;
-                printDocument.Print(); // Windows burada PDF kaydetme penceresi açacak
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-                MessageBox.Show(
-                    "'Microsoft Print to PDF' yazıcısı bulunamadı veya bir hata oluştu.",
-                    "Hata",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
 
         // ========== Designer'ın daha önce bağladığı ama kullanmadığım eventler için boş metotlar ==========
 
