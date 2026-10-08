@@ -31,7 +31,8 @@ namespace MediSistem
             private void button1_Click(object sender, EventArgs e)
         {
             string email = textBox1.Text.Trim();
-            string password = textBox2.Text.Trim();
+            // Şifre olduğu gibi kullanılır (boşluklar şifrenin parçası olabilir)
+            string password = textBox2.Text;
 
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
             {
@@ -44,16 +45,26 @@ namespace MediSistem
             {
                 using (var conn = DbHelper.GetConnection())
                 {
-                    string sql = "SELECT adsoyad FROM users WHERE email=@e AND password=@p";
+                    // Şifre özeti çekilir, doğrulama PBKDF2 ile uygulamada yapılır
+                    string sql = "SELECT adsoyad, password FROM users WHERE email=@e";
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@e", email);
-                    cmd.Parameters.AddWithValue("@p", password);
 
-                    object result = cmd.ExecuteScalar();
+                    string adSoyad = null;
+                    string storedHash = null;
 
-                    if (result != null)
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        MessageBox.Show("Giriş başarılı: " + result.ToString(), "Bilgi",
+                        if (reader.Read())
+                        {
+                            adSoyad = reader["adsoyad"].ToString();
+                            storedHash = reader["password"].ToString();
+                        }
+                    }
+
+                    if (storedHash != null && PasswordHasher.Verify(password, storedHash))
+                    {
+                        MessageBox.Show("Giriş başarılı: " + adSoyad, "Bilgi",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         

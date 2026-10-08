@@ -9,13 +9,16 @@ USE medisistem_db;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
+    -- PBKDF2-SHA256 özeti: PBKDF2-SHA256$<iterasyon>$<tuz>$<özet> (~90 karakter)
+    password VARCHAR(128) NOT NULL,
     adsoyad VARCHAR(100)
 );
 
--- Örnek kullanıcı
+-- Örnek kullanıcı (demo şifresi README'de; ilk girişten sonra değiştirin)
 INSERT INTO users (email, password, adsoyad)
-VALUES ('doktor@hastane.com', '', 'Dr. Ahmet Yılmaz');
+VALUES ('doktor@hastane.com',
+        'PBKDF2-SHA256$100000$mgVzdawLEJT1qmFQzllDtw==$clDkn8zZufD4DjaBVyJozSXOObYWWdlNGGbFGWUFrag=',
+        'Dr. Ahmet Yılmaz');
 
 
 --  Hastalar tablosu
