@@ -1,0 +1,49 @@
+# ---------------------------------------------------------------
+# Visual Studio
+# ---------------------------------------------------------------
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# ---------------------------------------------------------------
+# Build results
+# ---------------------------------------------------------------
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ll]og/
+*.pdb
+*.cache
+*.tmp
+
+# ---------------------------------------------------------------
+# NuGet (packages are restored from nuget.org)
+# ---------------------------------------------------------------
+packages/
+*.nupkg
+*.snupkg
+
+# ---------------------------------------------------------------
+# Local settings - contains the real database password, never commit
+# (see App.local.config.example)
+# ---------------------------------------------------------------
+App.local.config
+
+# ---------------------------------------------------------------
+# Image of unclear origin - kept locally only, not part of the repo
+# ---------------------------------------------------------------
+MediSistem/Resources/giriş resmi.png
+MediSistem/hastane resmi.jpg.png
+
+# ---------------------------------------------------------------
+# OS / editor
+# ---------------------------------------------------------------
+Thumbs.db
+Desktop.ini
+.DS_Store
