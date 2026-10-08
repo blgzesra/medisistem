@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copy this file to "App.local.config" (same folder) and put your own
+  MySQL credentials in it. App.local.config is listed in .gitignore and is
+  copied next to MediSistem.exe at build time. Values here override the
+  defaults in App.config.
+-->
+<appSettings>
+  <add key="MediSistemDb" value="Server=localhost;Database=medisistem_db;Uid=root;Pwd=YOUR_PASSWORD;Charset=utf8;" />
+</appSettings>

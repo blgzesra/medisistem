@@ -181,6 +181,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="App.local.config.example" />
+    <None Include="App.local.config" Condition="Exists('App.local.config')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="hastane resmi.jpg.png">
