@@ -93,7 +93,7 @@ If your MySQL user or password is different, do **not** edit `App.config`. Inste
 
 | E-mail | Password |
 |---|---|
-| `doktor@hastane.com` | `Demo1234!` |
+| `doctor@example.com` | `Demo1234!` |
 
 This account exists only for trying out the application. **Change the password after the first login.** The application has no password-change screen yet; to change it, generate a new hash with `PasswordHasher.Hash("new password")` and store it in `users.password` for that user.
 

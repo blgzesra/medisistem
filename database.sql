@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Örnek kullanıcı (demo şifresi README'de; ilk girişten sonra değiştirin)
 INSERT INTO users (email, password, adsoyad)
-VALUES ('doktor@hastane.com',
+VALUES ('doctor@example.com',
         'PBKDF2-SHA256$100000$mgVzdawLEJT1qmFQzllDtw==$clDkn8zZufD4DjaBVyJozSXOObYWWdlNGGbFGWUFrag=',
         'Dr. Ahmet Yılmaz');
 
